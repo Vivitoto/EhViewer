@@ -186,6 +186,12 @@ fun AnimatedVisibilityScope.EhScreen(navigator: DestinationsNavigator) = Screen(
                 entryValueRes = com.hippo.ehviewer.R.array.list_mode_entry_values,
                 state = listMode,
             )
+            SimpleMenuPreferenceInt(
+                title = stringResource(id = R.string.batch_torrent_pick_mode),
+                entry = com.hippo.ehviewer.R.array.batch_torrent_pick_mode_entries,
+                entryValueRes = com.hippo.ehviewer.R.array.batch_torrent_pick_mode_values,
+                state = Settings.batchTorrentPickMode.asMutableState(),
+            )
             AnimatedVisibility(visible = listMode.value == 0) {
                 Column {
                     IntSliderPreference(
