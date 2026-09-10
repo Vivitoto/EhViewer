@@ -96,6 +96,8 @@
     <string name="search_sft">Tags</string>
     <string name="select_image">Select image</string>
     <string name="select_image_first">Please select image first</string>
+    <string name="batch_selection_title">%d selected</string>
+    <string name="no_selected_galleries">No galleries selected</string>
     <string name="add_to_favourites">Add to favourites</string>
     <string name="remove_from_favourites">Remove from favourites</string>
     <string name="delete_downloads">Delete downloads</string>
@@ -142,6 +144,10 @@
     <string name="rate_successfully">Rate successfully</string>
     <string name="rate_failed">Rate failed</string>
     <string name="no_torrents">No torrents</string>
+    <string name="copy_torrent_magnet_links">Copy torrent magnet links</string>
+    <string name="batch_torrent_pick_mode">Batch torrent selection</string>
+    <string name="torrent_pick_largest_size">Largest size</string>
+    <string name="torrent_pick_latest_time">Latest time</string>
     <string name="torrents">Torrents</string>
     <string name="not_favorited">Not favorited</string>
     <string name="add_favorites_dialog_title">Add to favorites</string>

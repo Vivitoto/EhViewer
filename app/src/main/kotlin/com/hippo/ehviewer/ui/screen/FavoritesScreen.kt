@@ -61,6 +61,7 @@ import com.ehviewer.core.ui.component.LocalSideSheetState
 import com.ehviewer.core.ui.component.ProvideSideSheetContent
 import com.ehviewer.core.ui.icons.EhIcons
 import com.ehviewer.core.ui.icons.filled.GoTo
+import com.ehviewer.core.ui.icons.filled.Magnet
 import com.ehviewer.core.ui.util.asyncState
 import com.ehviewer.core.ui.util.takeAndClear
 import com.ehviewer.core.ui.util.thenIf
@@ -76,13 +77,17 @@ import com.hippo.ehviewer.collectAsState
 import com.hippo.ehviewer.ui.DrawerHandle
 import com.hippo.ehviewer.ui.Screen
 import com.hippo.ehviewer.ui.awaitSelectDate
+import com.hippo.ehviewer.ui.collectBatchTorrentMagnetLinks
 import com.hippo.ehviewer.ui.main.AvatarIcon
 import com.hippo.ehviewer.ui.main.GalleryInfoGridItem
 import com.hippo.ehviewer.ui.main.GalleryInfoListItem
 import com.hippo.ehviewer.ui.main.GalleryList
 import com.hippo.ehviewer.ui.startDownload
+import com.hippo.ehviewer.ui.tools.DialogState
 import com.hippo.ehviewer.ui.tools.awaitConfirmationOrCancel
 import com.hippo.ehviewer.ui.tools.awaitSelectItem
+import com.hippo.ehviewer.util.addTextToClipboard
+import com.hippo.ehviewer.util.bgWork
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -334,6 +339,16 @@ fun AnimatedVisibilityScope.FavouritesScreen(navigator: DestinationsNavigator, v
                 val info = checkedInfoMap.takeAndClear()
                 runSwallowingWithUI {
                     startDownload(false, *info.toTypedArray())
+                }
+            }
+            onClick(EhIcons.Default.Magnet) {
+                val info = checkedInfoMap.values.toList()
+                val links = with(contextOf<DialogState>()) {
+                    bgWork { collectBatchTorrentMagnetLinks(info) }
+                }
+                if (links.isNotEmpty()) {
+                    withUIContext { addTextToClipboard(links.joinToString("\n"), true) }
+                    checkedInfoMap.clear()
                 }
             }
             onClick(Icons.Default.Delete) {
