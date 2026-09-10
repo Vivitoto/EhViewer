@@ -570,6 +570,7 @@ fun AnimatedVisibilityScope.GalleryListScreen(
                 CheckableItem(
                     checked = checked,
                     modifier = Modifier.thenIf(animateItems) { animateItem() },
+                    showPlaceholder = selectMode,
                 ) { interactionSource ->
                     GalleryInfoListItem(
                         onClick = {
@@ -600,6 +601,7 @@ fun AnimatedVisibilityScope.GalleryListScreen(
                 CheckableItem(
                     checked = checked,
                     modifier = Modifier.thenIf(animateItems) { animateItem() },
+                    showPlaceholder = selectMode,
                 ) { interactionSource ->
                     GalleryInfoGridItem(
                         onClick = {
