@@ -112,8 +112,8 @@ import com.hippo.ehviewer.collectAsState
 import com.hippo.ehviewer.ui.DrawerHandle
 import com.hippo.ehviewer.ui.Screen
 import com.hippo.ehviewer.ui.addToFavorites
-import com.hippo.ehviewer.ui.awaitSelectDate
 import com.hippo.ehviewer.ui.awaitFavoriteSlot
+import com.hippo.ehviewer.ui.awaitSelectDate
 import com.hippo.ehviewer.ui.collectBatchTorrentMagnetLinks
 import com.hippo.ehviewer.ui.destinations.ProgressScreenDestination
 import com.hippo.ehviewer.ui.doGalleryInfoAction

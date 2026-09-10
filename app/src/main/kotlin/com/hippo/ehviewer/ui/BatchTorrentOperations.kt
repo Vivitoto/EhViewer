@@ -1,12 +1,12 @@
 package com.hippo.ehviewer.ui
 
 import com.ehviewer.core.model.BaseGalleryInfo
+import com.ehviewer.core.util.withIOContext
 import com.hippo.ehviewer.Settings
 import com.hippo.ehviewer.client.EhEngine
 import com.hippo.ehviewer.client.EhUrl
 import com.hippo.ehviewer.client.parser.ParserUtils
 import com.hippo.ehviewer.client.parser.Torrent
-import com.ehviewer.core.util.withIOContext
 import io.ktor.http.encodeURLParameter
 
 object BatchTorrentPickMode {
