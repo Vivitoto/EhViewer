@@ -80,6 +80,11 @@
     <string name="search_sft">标签</string>
     <string name="select_image">选择图片</string>
     <string name="select_image_first">请先选择图片</string>
+    <string name="batch_selection">批量选择</string>
+    <string name="batch_selection_title">已选择 %d 项</string>
+    <string name="select_loaded_galleries">全选已加载画廊</string>
+    <string name="exit_selection">退出选择</string>
+    <string name="no_selected_galleries">尚未选择画廊</string>
     <string name="add_to_favourites">收藏</string>
     <string name="remove_from_favourites">移除收藏</string>
     <string name="delete_downloads">删除下载</string>
@@ -127,6 +132,7 @@
     <string name="rate_failed">评分失败</string>
     <string name="no_torrents">没有种子</string>
     <string name="torrents">种子</string>
+    <string name="copy_torrent_magnet_links">复制种子磁力链接</string>
     <string name="not_favorited">未收藏</string>
     <string name="add_favorites_dialog_title">添加收藏</string>
     <string name="add_to_favorite_success">已添加至收藏</string>
@@ -400,6 +406,9 @@
     <string name="move_favorites_dialog_title">移动收藏</string>
     <string name="default_favorites_collection">默认收藏夹</string>
     <string name="default_favorites_warning">启用此项将无法添加收藏备注</string>
+    <string name="batch_torrent_pick_mode">批量种子选择规则</string>
+    <string name="torrent_pick_largest_size">体积最大</string>
+    <string name="torrent_pick_latest_time">时间最新</string>
     <string name="let_me_select">让我选择</string>
     <string name="favorite_note">收藏备注</string>
     <string name="collections">收藏夹</string>
