@@ -80,6 +80,7 @@ object Settings : DataStorePreferences(null) {
     val listThumbSize = intPref("list_tile_size", 40)
     val detailSize = intPref("detail_size_2", 0)
     val thumbColumns = intPref("thumb_columns", 3)
+    val batchTorrentPickMode = intPref("batch_torrent_pick_mode", 0)
     val showGalleryPages = boolPref("show_gallery_pages", true)
     val showReadingProgress = boolPref("show_reading_progress", false)
     val showVoteStatus = boolPref("show_vote_status", false)
