@@ -177,6 +177,35 @@ suspend fun startDownload(forceDefault: Boolean, vararg galleryInfos: BaseGaller
 }
 
 context(_: DialogState)
+suspend fun awaitFavoriteSlot(): Int {
+    val localFav = appCtx.getString(R.string.local_favorites)
+    val items = buildList {
+        add(localFav)
+        if (Settings.hasSignedIn.value) {
+            addAll(Settings.favCat)
+        }
+    }
+    val selected = awaitSelectItem(items, R.string.add_favorites_dialog_title)
+    return if (selected == 0) LOCAL_FAVORITED else selected - 1
+}
+
+suspend fun addToFavorites(galleryInfo: GalleryInfo, slot: Int): Boolean {
+    val localFavorited = EhDB.containLocalFavorites(galleryInfo.gid)
+    return if (slot == LOCAL_FAVORITED) {
+        if (!localFavorited) {
+            EhDB.putLocalFavorites(galleryInfo)
+            if (galleryInfo.favoriteSlot == NOT_FAVORITED) {
+                galleryInfo.favoriteSlot = LOCAL_FAVORITED
+            }
+            FavouriteStatusRouter.notify(galleryInfo)
+        }
+        true
+    } else {
+        doModifyFavorites(galleryInfo, slot, localFavorited)
+    }
+}
+
+context(_: DialogState)
 suspend fun modifyFavorites(galleryInfo: GalleryInfo): Boolean {
     val localFavorited = EhDB.containLocalFavorites(galleryInfo.gid)
     if (Settings.hasSignedIn.value) {
@@ -297,17 +326,17 @@ suspend fun doGalleryInfoAction(info: BaseGalleryInfo) {
         }
     }
     val selected = awaitSelectItemWithIcon(items, EhUtils.getSuitableTitle(info))
-    when (selected) {
-        0 -> {
+    when {
+        selected == 0 -> {
             EhDB.putHistoryInfo(info)
             navToReader(info)
         }
-        1 -> if (downloaded) {
+        selected == 1 -> if (downloaded) {
             confirmRemoveDownload(info)
         } else {
             startDownload(false, info)
         }
-        2 -> if (favorited) {
+        selected == 2 -> if (favorited) {
             runSuspendCatching {
                 removeFromFavorites(info)
                 tip(R.string.remove_from_favorite_success)
@@ -322,7 +351,7 @@ suspend fun doGalleryInfoAction(info: BaseGalleryInfo) {
                 tip(R.string.add_to_favorite_failure)
             }
         }
-        3 -> showMoveDownloadLabel(info)
+        selected == 3 && downloaded -> showMoveDownloadLabel(info)
     }
 }
 
